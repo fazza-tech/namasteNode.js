@@ -5,6 +5,14 @@
 
 const fs = require('fs');
 const https = require('https');
+const crypto = require('crypto');
+
+crypto.pbkdf2Sync("password", "salt",5000000,60,"sha256");
+console.log("Password is encrypoted");
+
+crypto.pbkdf2("blablabla","salt",50000,50,"sha256",(err,key)=>{
+    console.log("key is generated",key);
+})
 
 fs.readFile("./file.txt","utf8",(err,data)=>{
     console.log("Your data is:: "+data);
