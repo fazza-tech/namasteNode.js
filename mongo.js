@@ -29,8 +29,13 @@ async function main() {
         city: "Cheeral",
         phone: "6969696969"
     };
-
-    const insertResult = await collection.insertMany([data1, data2]);
+    const data3 = {
+        firstName: "Teena",
+        lastName: "Chakko",
+        city: "s.Bathery",
+        phone: "8181818181"
+    };
+    const insertResult = await collection.insertMany([data1, data2,data3]);
     console.log('Inserted documents =>', insertResult);
 
     const updateResult = await collection.updateOne(
@@ -44,11 +49,14 @@ async function main() {
         { $unset: { phone: "" } } // remove the phone field
     );
 
-    const findResult = await collection.find({}).toArray();
-    console.log('Found documents =>', findResult);
+    // const findResult = await collection.find({}).toArray();
+    // console.log('Found documents =>', findResult);
 
-    const countResult = await collection.countDocuments({});
-    console.log('Count of the user documnets collection =>', countResult);
+    // const countResult = await collection.countDocuments({});
+    // console.log('Count of the user documnets collection =>', countResult);
+
+    const findSame = await collection.find({firstName:"Teena"}).toArray();
+    console.log("same name data =>",findSame);
 
     return 'done.';
 }
